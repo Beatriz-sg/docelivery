@@ -17,7 +17,7 @@ public class Usuario {
     private String senha;
     private LocalDate dataNascimento;
     private String tipoUsuario;
-    private Boolean codigoStatus;
+    private Boolean codStatus;
 
 
 }

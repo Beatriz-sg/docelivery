@@ -1,12 +1,18 @@
-package com.app.confeitaria.docelivey.model.entity;
+package com.app.confeitaria.docelivery.model.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import lombok.*;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @DiscriminatorValue("CONFEITARIA")
-public class Confeitaria extends Usuario {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class Confeiteiro extends Usuario {
 
     @Column(nullable = true, length = 20)
     private String cnpj;

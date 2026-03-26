@@ -1,4 +1,4 @@
-package com.app.confeitaria.docelivey.model.enums;
+package com.app.confeitaria.docelivery.model.enums;
 
 public enum TipoUsuario {
 

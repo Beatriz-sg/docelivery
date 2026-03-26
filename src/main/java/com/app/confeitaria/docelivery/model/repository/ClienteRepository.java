@@ -1,6 +1,6 @@
-package com.app.confeitaria.docelivey.model.repository;
+package com.app.confeitaria.docelivery.model.repository;
 
-import com.app.confeitaria.docelivey.model.entity.Cliente;
+import com.app.confeitaria.docelivery.model.entity.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

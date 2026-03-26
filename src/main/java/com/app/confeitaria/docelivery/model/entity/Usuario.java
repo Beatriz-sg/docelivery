@@ -1,7 +1,8 @@
-package com.app.confeitaria.docelivey.model.entity;
+package com.app.confeitaria.docelivery.model.entity;
 
-import com.app.confeitaria.docelivey.model.enums.TipoUsuario;
+import com.app.confeitaria.docelivery.model.enums.TipoUsuario;
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -9,10 +10,17 @@ import java.time.LocalDate;
 @Table(name = "usuario")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE) // Informa que o padrão utilizado é uma tabela para todos os usuários
 @DiscriminatorColumn(name = "tipo_usuario", discriminatorType = DiscriminatorType.STRING) // Informa qual é o nome da coluna que vai ser utilizada
+@Getter
+@Setter
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Usuario {
 
     @Id       //  PK
     @GeneratedValue(strategy = GenerationType.IDENTITY)  //  Auto-Incremento (identificado sequencialmente de 1 em 1)
+    @EqualsAndHashCode.Include
     private Long id;
     @Column(nullable = true, length = 100)
     private String nome;

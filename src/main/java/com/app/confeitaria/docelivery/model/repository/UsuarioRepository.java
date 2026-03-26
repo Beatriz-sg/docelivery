@@ -1,8 +1,7 @@
-package com.app.confeitaria.docelivey.model.repository;
+package com.app.confeitaria.docelivery.model.repository;
 
-import com.app.confeitaria.docelivey.model.entity.Usuario;
+import com.app.confeitaria.docelivery.model.entity.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository

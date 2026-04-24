@@ -1,22 +1,29 @@
 package com.app.confeitaria.docelivery.model.entity;
 
 import com.app.confeitaria.docelivery.model.enums.TipoUsuario;
+import com.app.confeitaria.docelivery.model.repository.UsuarioRepository;
 import jakarta.persistence.*;
 import lombok.*;
+import org.jspecify.annotations.Nullable;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "usuario")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE) // Informa que o padrão utilizado é uma tabela para todos os usuários
-@DiscriminatorColumn(name = "tipo_usuario", discriminatorType = DiscriminatorType.STRING) // Informa qual é o nome da coluna que vai ser utilizada
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE) // informa que o padrão utilizado é uma tabela para todos os usuários
+@DiscriminatorColumn(name = "tipo_usuario", discriminatorType = DiscriminatorType.STRING) // informa que é o nome da coluna que vai ser utilizada
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-public class Usuario {
+@NoArgsConstructor  //construtor padrão
+@AllArgsConstructor //Construtor com todos os atributos
+@Builder            //Forma diferenciada para criar objetos
+
+public class Usuario implements UserDetails {
 
     @Id       //  PK
     @GeneratedValue(strategy = GenerationType.IDENTITY)  //  Auto-Incremento (identificado sequencialmente de 1 em 1)
@@ -50,5 +57,42 @@ public class Usuario {
 
     private Boolean codStatus;
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return tipoUsuario.getGrantedAuthorities();
+    }
 
+    @Override
+    public @Nullable String getPassword() {
+        return senha;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    public boolean isCodStatus() {
+        return false;
+    }
 }
